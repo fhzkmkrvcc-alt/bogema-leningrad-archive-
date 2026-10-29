@@ -4,9 +4,11 @@ import { createClient } from '@supabase/supabase-js';
 import { Search, Plus, X, ArrowLeft, LogIn, LogOut, Pencil, Trash2, ImagePlus, Archive, ArrowUpRight } from 'lucide-react';
 import './style.css';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = url && key ? createClient(url, key) : null;
+const url = (import.meta.env.VITE_SUPABASE_URL || '').trim().replace(/\/+$/, '');
+const key = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+
+const supabase =
+  url && key ? createClient(url, key) : null;
 const blank = { title:'', brand:'', category:'Другое', year:'', description:'', tags:'' };
 const categories = ['Все предметы','Кофты','Джинсы','Верхняя одежда','Футболки','Лонгсливы','Свитшоты','Обувь','Головные уборы','Аксессуары','Сумки','Другое'];
 const photoCategory = 'Фото';
